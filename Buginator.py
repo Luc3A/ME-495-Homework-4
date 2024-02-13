@@ -31,9 +31,6 @@ def createXML(numSegments):
     # create an empty array for all motor types (legs or body to actuate later) 
     motorList = np.array([])
 
-    # create a random number of body segments (within limits) 
-    numSegments = random.randint(1,10)
-
     # for each body segments, create a body and attach legs
     for i in range(numSegments):  
         MotorGear = f"100"
@@ -113,8 +110,6 @@ def createSteps(motorList, wiggleTorque, stompTorque):
     count = 0
     counter = 1
 
-    # randomize how strong each bug 'wiggles' 
-
     # create 2 arrays for each step taken by the bug
     for i in motorList:
         if i == 1:
@@ -158,7 +153,7 @@ def animate(stepList):
     positions = np.array([])
 
     # simulate the bugs 
-    for i in range(500):
+    for i in range(5000):
         if i == 1:
             pos1 = data.body('body0Body').xpos
         if viewer.is_alive:
@@ -199,6 +194,10 @@ def mutate(numSegments, wiggleTorque, stompTorque):
     numSegments = numSegments + random.randint(-2,2)
     wiggleTorque = wiggleTorque + random.randint(-10,10)
     stompTorque = stompTorque +  random.randint(-10,10)
+
+    if numSegments < 0:
+        numSegments = 0
+
     return numSegments, wiggleTorque, stompTorque
 
     
