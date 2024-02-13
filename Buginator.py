@@ -195,8 +195,8 @@ def mutate(numSegments, wiggleTorque, stompTorque):
     wiggleTorque = wiggleTorque + random.randint(-10,10)
     stompTorque = stompTorque +  random.randint(-10,10)
 
-    if numSegments < 0:
-        numSegments = 0
+    if numSegments < 1:
+        numSegments = 1
 
     return numSegments, wiggleTorque, stompTorque
 
